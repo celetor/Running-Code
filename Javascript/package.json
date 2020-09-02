@@ -1,0 +1,25 @@
+{
+  "name": "Cloud189CheckinByActions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JD_DailyBonus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Celeter/Cloud189CheckinByActions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Celeter/Cloud189CheckinByActions/issues"
+  },
+  "homepage": "https://github.com/Celeter/Cloud189CheckinByActions#readme",
+  "dependencies": {
+    "download": "^8.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
+}

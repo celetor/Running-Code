@@ -1,0 +1,31 @@
+name: 京东每日签到
+
+on:
+  schedule:
+    - cron: 20 16 * * *
+#  push:
+#    branches: [ master ]
+    
+jobs:
+  start:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v2
+
+      - name: Nodejs Install
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Requests Install
+        run: npm install
+        working-directory: Javascript
+
+      - name: Script Run
+        run: node JD_DailyBonus.js
+        working-directory: Javascript
+        env:
+          JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          # PUSH_KEY: ${{ secrets.SCKEY }}

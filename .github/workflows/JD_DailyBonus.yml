@@ -3,8 +3,8 @@ name: 京东每日签到
 on:
   schedule:
     - cron: 20 16 * * *
-#  push:
-#    branches: [ master ]
+  push:
+    branches: [ test ]
     
 jobs:
   start:

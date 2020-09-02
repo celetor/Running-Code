@@ -1,0 +1,35 @@
+  
+name: 189 Cloud Checkin
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  watch:
+    types: [ started ]
+  schedule:
+    - cron: 45 0,13 * * *
+
+jobs:
+  build:
+    if: ${{ github.actor == 'Celeter' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.7.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7.6
+      
+    - name: requirements
+      run: pip install -r requirements.txt
+
+    - name: Checkin
+      run: python All_In_One.py
+      env:
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PWD }}
+        SCKEY: ${{ secrets.SCKEY }}

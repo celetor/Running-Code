@@ -1,0 +1,74 @@
+name: 天翼云每日签到
+
+on:
+  schedule:
+    - cron: 45 0 * * *
+
+jobs:
+  build:
+    if: ${{ github.actor == 'Celeter' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          ref: slave
+
+      - name: Set up Python 3.7.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7.8
+
+      - name: Requirements
+        run: pip install -r requirements.txt
+        working-directory: Python
+
+      - name: Checkin
+        shell: bash
+        working-directory: Python
+        run: |
+          user='${{ secrets.USER }}'
+          pwd='${{ secrets.PWD }}'
+          key='${{ secrets.SCKEY }}'
+
+          user_list=()
+          pwd_list=()
+          key_list=()
+
+          for x in ${user[*]}
+          do
+          user_list[${#user_list[*]}]=${x}
+          done
+
+          for y in ${pwd[*]}
+          do
+          pwd_list[${#pwd_list[*]}]=${y}
+          done
+
+          for z in ${key[*]}
+          do
+          key_list[${#key_list[*]}]=${z}
+          done
+
+          user_num=${#user_list[*]}
+          pwd_num=${#pwd_list[*]}
+          key_num=${#key_list[*]}
+
+          if [ $user_num != $pwd_num ];then
+          echo "账号和密码个数不对应"
+          exit 1
+          elif [ $user_num != $key_num ];then
+          echo "账号和SCKEY个数不对应"
+          exit 1
+          else
+          echo "共有 $user_num 个账号，即将开始签到"
+          fi
+
+          for ((i=0;i<$user_num;i++))
+          do
+          python 189Cloud_Server.py <<EOF
+          ${user_list[$i]}
+          ${pwd_list[$i]}
+          ${key_list[$i]}
+          EOF
+          done

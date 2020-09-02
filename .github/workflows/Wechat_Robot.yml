@@ -5,8 +5,8 @@ on:
     - cron: 0 10,23 * * *
 #  watch:
 #    types: [ started ]
-#  push:
-#    branches: [ master ]
+  push:
+    branches: [ test ]
 #  issue_comment:
 #    types: [created, deleted]
 
@@ -55,13 +55,13 @@ jobs:
 #          WECHAT_URL: ${{ secrets.WECHAT_URL }}
 #          IS_QIDIAN: 'TRUE'
 
-#      - name: Send Picture Message
-#        if: ${{ github.event_name == 'push' }}
-#        run: python wechat_robot.py
-#        working-directory: Python
-#        env:
-#          WECHAT_URL: ${{ secrets.WECHAT_URL }}
-#          IS_PICTURE: 'TRUE'
+      - name: Send Picture Message
+        if: ${{ github.event_name == 'push' }}
+        run: python wechat_robot.py
+        working-directory: Python
+        env:
+          WECHAT_URL: ${{ secrets.WECHAT_URL }}
+          IS_PICTURE: 'TRUE'
 
 #      - name: Send Markdown Message
 #        if: ${{ github.event_name == 'issue_comment' }}

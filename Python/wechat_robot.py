@@ -19,9 +19,9 @@ def md5EncodeFile(byte):
 def request(url, headers=None, data=None, method="GET"):
     try:
         if method == "GET":
-            res = requests.get(url, headers=headers, timeout=10)
+            res = requests.get(url, headers=headers, timeout=1000)
         else:
-            res = requests.post(url, data=data, headers=headers, timeout=10)
+            res = requests.post(url, data=data, headers=headers, timeout=1000)
         return res
     except ReadTimeout:
         print('timeout')

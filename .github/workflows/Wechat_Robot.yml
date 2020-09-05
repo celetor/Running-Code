@@ -26,6 +26,7 @@ jobs:
           pip install lxml
 
       - name: Send Text Message
+        if: ${{ github.event_name == 'push' }}
         run: python wechat_robot.py
         working-directory: Python
         env:
@@ -57,7 +58,7 @@ jobs:
 #          IS_QIDIAN: 'TRUE'
 
       - name: Send Picture Message
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name != 'push' }}
         run: python wechat_robot.py
         working-directory: Python
         env:

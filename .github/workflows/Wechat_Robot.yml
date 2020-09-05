@@ -2,7 +2,7 @@ name: 微信机器人
 
 on:
   schedule:
-    - cron: 0 10,23 * * *
+    - cron: 0 23 * * *
 #  watch:
 #    types: [ started ]
 #  push:

@@ -44,8 +44,9 @@ def get_pic_url():
     index = 2
     url = ['http://api.btstu.cn/sjbz/api.php?method={}&lx={}&format={}'.format('mobile', 'dongman', 'json'),
            'https://api.66mz8.com/api/rand.acg.php?type=二次元&format=json',
-           'https://api.ixiaowai.cn/api/api.php?return=json',
-           'https://api.apiopen.top/getImages?count=1']
+           'https://api.apiopen.top/getImages?count=1',
+           # 'https://api.ixiaowai.cn/api/api.php?return=json',
+           ]
     headers = {
         'Content-Type': 'application/json',
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36 Edg/85.0.564.41"
@@ -58,9 +59,9 @@ def get_pic_url():
     elif index == 1:
         img_url = json.loads(ret)['pic_url']
     elif index == 2:
-        img_url = json.loads(ret)['imgurl']
-    else:
         img_url = json.loads(ret)['result'][0]['img']
+    else:
+        img_url = json.loads(ret)['imgurl']
     print('img',img_url)
     return img_url
 

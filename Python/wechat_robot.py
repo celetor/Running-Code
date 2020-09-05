@@ -1,4 +1,5 @@
 import os, time, json, base64, hashlib
+import random
 from bs4 import BeautifulSoup
 import requests
 from requests.exceptions import ReadTimeout, HTTPError, RequestException
@@ -38,13 +39,25 @@ def wechat(data):
     return request(url, headers=headers, data=data, method="POST").text
 
 
-def get_pic_url(method='mobile', type='dongman', format='json'):
-    url = 'http://api.btstu.cn/sjbz/api.php?method={}&lx={}&format={}'.format(method, type, format)
+def get_pic_url():
+    index = random.randint(0,3)
+    url = ['http://api.btstu.cn/sjbz/api.php?method={}&lx={}&format={}'.format('mobile', 'dongman', 'json'),
+           'https://api.66mz8.com/api/rand.acg.php?type=二次元&format=json',
+           'https://api.ixiaowai.cn/api/api.php?return=json',
+           'https://api.apiopen.top/getImages?count=1']
     headers = {
         'Content-Type': 'application/json',
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36 Edg/85.0.564.41"
     }
-    ret = request(url, headers=headers).text
-    return json.loads(ret)['imgurl']
+    ret = request(url[index], headers=headers).text
+    if index == 0:
+        return json.loads(ret).get('imgurl')
+    elif index == 1:
+        return json.loads(ret).get('pic_url')
+    elif index == 2:
+        return json.loads(ret).get('imgurl')
+    else:
+        return json.loads(ret)['result'][0]['img']
 
 
 def news_163():
@@ -176,12 +189,18 @@ def markdown_content():
 
 
 def text_content():
-    url = 'https://v1.hitokoto.cn/?encode=json'
+    index = random.randint(0,2)
+    url = ['https://v1.hitokoto.cn/?encode=json','https://api.ixiaowai.cn/ylapi/index.php/?code=json','https://api.66mz8.com/api/quotation.php?format=json']
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
     }
-    ret = request(url, headers=headers).text
-    return json.loads(ret).get('hitokoto')
+    ret = request(url[index], headers=headers).text
+    if index == 0:
+        return json.loads(ret).get('hitokoto')
+    elif index == 1:
+        return json.loads(ret).get('msg')
+    else:
+        return json.loads(ret).get('quotation')
 
 
 if __name__ == '__main__':

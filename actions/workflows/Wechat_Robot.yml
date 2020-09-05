@@ -28,6 +28,13 @@ jobs:
           pip install beautifulsoup4
           pip install lxml
 
+      - name: Send Text Message
+        run: python wechat_robot.py
+        working-directory: Python
+        env:
+          WECHAT_URL: ${{ secrets.WECHAT_URL }}
+          IS_TEXT: 'TRUE'
+
       - name: Send 163News Message
         if: github.event_name == 'schedule'
         run: python wechat_robot.py

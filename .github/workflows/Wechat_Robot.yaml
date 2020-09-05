@@ -1,8 +1,8 @@
-name: 微信机器人1
+name: 微信机器人2
 
 on:
   schedule:
-    - cron: 0 23 * * *
+    - cron: 0 14 * * *
 #  watch:
 #    types: [ started ]
 #  push:
@@ -31,27 +31,26 @@ jobs:
           pip install beautifulsoup4
           pip install lxml
 
-      - name: Send 163News Message
-        if: {{ github.event_name == 'schedule' }}
+      - name: Send Text Message
+        if: ${{ github.event_name == 'schedule' }}
         run: python wechat_robot.py
         working-directory: Python
         env:
           WECHAT_URL: ${{ secrets.WECHAT_URL }}
-          IS_NEWS: 'TRUE'
+          IS_TEXT: 'TRUE'
 
-      - name: Send Youshu Message
-        if: ${{ github.event_name == 'watch' }}
+      - name: Send Picture Message
+        if: ${{ github.event_name != 'schedule' }}
         run: python wechat_robot.py
         working-directory: Python
         env:
           WECHAT_URL: ${{ secrets.WECHAT_URL }}
-          IS_YOUSHU: 'TRUE'
+          IS_PICTURE: 'TRUE'
 
-      - name: Send Qidian Message
-        if: ${{ github.event_name == 'pull_request' }}
-        run: python wechat_robot.py
+      - name: Send Markdown Message
+        if: ${{ github.event_name == 'issue_comment' }}
+        run: python $GITHUB_WORKSPACE/.github/scripts/wechat_robot.py
         working-directory: Python
         env:
           WECHAT_URL: ${{ secrets.WECHAT_URL }}
-          IS_QIDIAN: 'TRUE'
-
+          IS_MARKDOWN: 'TRUE'

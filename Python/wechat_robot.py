@@ -52,14 +52,17 @@ def get_pic_url():
     }
     print('get_pic_url',url[index])
     ret = request(url[index], headers=headers).text
+    img_url = ''
     if index == 0:
-        return json.loads(ret)['imgurl']
+        img_url = json.loads(ret)['imgurl']
     elif index == 1:
-        return json.loads(ret)['pic_url']
+        img_url = json.loads(ret)['pic_url']
     elif index == 2:
-        return json.loads(ret)['imgurl']
+        img_url = json.loads(ret)['imgurl']
     else:
-        return json.loads(ret)['result'][0]['img']
+        img_url = json.loads(ret)['result'][0]['img']
+    print('img',img_url)
+    return img_url
 
 
 def news_163():

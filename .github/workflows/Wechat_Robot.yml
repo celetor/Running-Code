@@ -32,7 +32,7 @@ jobs:
           pip install lxml
 
       - name: Send 163News Message
-        if: {{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' }}
         run: python wechat_robot.py
         working-directory: Python
         env:

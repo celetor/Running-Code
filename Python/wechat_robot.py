@@ -41,7 +41,7 @@ def wechat(data):
 
 def get_pic_url():
     # index = random.randint(0,3)
-    index = 1
+    index = 2
     url = ['http://api.btstu.cn/sjbz/api.php?method={}&lx={}&format={}'.format('mobile', 'dongman', 'json'),
            'https://api.66mz8.com/api/rand.acg.php?type=二次元&format=json',
            'https://api.ixiaowai.cn/api/api.php?return=json',

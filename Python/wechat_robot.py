@@ -41,7 +41,7 @@ def wechat(data):
 
 def get_pic_url():
     # index = random.randint(0,3)
-    index = 0
+    index = 1
     url = ['http://api.btstu.cn/sjbz/api.php?method={}&lx={}&format={}'.format('mobile', 'dongman', 'json'),
            'https://api.66mz8.com/api/rand.acg.php?type=二次元&format=json',
            'https://api.ixiaowai.cn/api/api.php?return=json',
@@ -262,7 +262,7 @@ if __name__ == '__main__':
 
     # ret = wechat(json_data)
     ret='{}'
-    if json.loads(ret)['errcode'] == 0:
+    if json.loads(ret).get('errcode') == 0:
         print('发送成功')
     else:
         print('发送失败')

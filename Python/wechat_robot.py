@@ -191,7 +191,7 @@ if __name__ == '__main__':
         print(article)
         json_data = json.dumps({
             "msgtype": "text",
-            "markdown": {
+            "text": {
                 "content": article
         }
     })

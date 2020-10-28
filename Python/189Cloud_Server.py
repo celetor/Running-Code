@@ -76,7 +76,7 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        description = response.json()['description']
+        description = response.json().get('description')
         print(f"抽奖获得{description}")
 
 

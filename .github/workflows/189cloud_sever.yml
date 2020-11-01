@@ -29,9 +29,9 @@ jobs:
         shell: bash
         working-directory: Python
         run: |
-          user='${{ secrets.USER }}'
-          pwd='${{ secrets.PWD }}'
-          key='${{ secrets.SCKEY }}'
+          user='${{ secrets.189USER }}'
+          pwd='${{ secrets.189PWD }}'
+          key='${{ secrets.189SCKEY }}'
 
           user_list=()
           pwd_list=()

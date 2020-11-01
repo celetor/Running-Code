@@ -1,6 +1,8 @@
 name: 京东每日签到
 
 on:
+  watch:
+    types: [ started ]
   schedule:
     - cron: 20 16 * * *
 #  push:

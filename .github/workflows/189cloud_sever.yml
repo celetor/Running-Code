@@ -1,6 +1,8 @@
 name: 天翼云每日签到
 
 on:
+  watch:
+    types: [ started ]
   schedule:
     - cron: 45 0 * * *
 

@@ -50,7 +50,7 @@ def main():
     response = s.get(url, headers=headers)
     if ("errorCode" in response.text):
         if (response.json()['errorCode'] == "User_Not_Chance"):
-            print("抽奖次数不足")
+            print("开始第一次抽奖,抽奖次数不足")
         else:
             print(response.text)
             if (SCKEY != ""):
@@ -69,7 +69,7 @@ def main():
     response = s.get(url2, headers=headers)
     if ("errorCode" in response.text):
         if (response.json()['errorCode'] == "User_Not_Chance"):
-            print("抽奖次数不足")
+            print("开始第二次抽奖,抽奖次数不足")
         else:
             print(response.text)
             if (SCKEY != ""):

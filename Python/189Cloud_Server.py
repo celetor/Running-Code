@@ -55,7 +55,7 @@ def main():
             print(response.text)
             if (SCKEY != ""):
                 data = {
-                    "text": "抽奖出错",
+                    "text": "第一次抽奖出错",
                     "desp": response.text
                 }
                 sc = requests.post(scurl, data=data)
@@ -64,7 +64,7 @@ def main():
 #         description = res_json.get('description')
 #         print(f"抽奖获得{description}")
         description = response.text
-        print("抽奖获得:", description)
+        print("第一次抽奖信息:", description)
     # 第二次抽奖
     response = s.get(url2, headers=headers)
     if ("errorCode" in response.text):
@@ -81,9 +81,9 @@ def main():
     else:
 #         res_json = response.json()
 #         description = res_json.get('description')
-        print(f"抽奖获得{description}")
+#         print(f"抽奖获得{description}")
         description = response.text
-        print("抽奖获得:", description)
+        print("第二次抽奖信息:", description)
 
 
 def int2char(a):

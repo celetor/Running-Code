@@ -60,8 +60,11 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        description = response.json().get('description')
-        print(f"抽奖获得{description}")
+#         res_json = response.json()
+#         description = res_json.get('description')
+#         print(f"抽奖获得{description}")
+        description = response.text
+        print("抽奖获得:", description)
     # 第二次抽奖
     response = s.get(url2, headers=headers)
     if ("errorCode" in response.text):
@@ -76,8 +79,11 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        description = response.json().get('description')
+#         res_json = response.json()
+#         description = res_json.get('description')
         print(f"抽奖获得{description}")
+        description = response.text
+        print("抽奖获得:", description)
 
 
 def int2char(a):

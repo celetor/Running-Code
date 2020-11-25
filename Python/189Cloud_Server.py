@@ -79,7 +79,7 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        res_json = response.json().get('prizeName')
+        description = response.json().get('prizeName')
         if description is None:
             description = response.text
         print("第二次抽奖信息:", description)

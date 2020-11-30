@@ -35,8 +35,10 @@ def main():
     }
     # 签到
     response = s.get(surl, headers=headers)
-    netdiskBonus = response.json()['netdiskBonus']
-    if (response.json()['isSign'] == "false"):
+    res = response.text
+    res_dict = json.loads(res)
+    netdiskBonus = res_dict.get('netdiskBonus')
+    if (res_dict.get('isSign') == "false"):
         print(f"未签到，签到获得{netdiskBonus}M空间")
     else:
         print(f"已签到，签到获得{netdiskBonus}M空间")

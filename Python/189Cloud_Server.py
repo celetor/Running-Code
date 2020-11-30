@@ -60,10 +60,10 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        print("LOG_1:" + response.json())
-        description = response.json().get('prizeName')
+        res = response.text
+        description = json.loads(res).get('prizeName')
         if description is None:
-            description = response.text
+            description = res
         print("第一次抽奖信息:", description)
 #         print(f"抽奖获得{description}")
     # 第二次抽奖
@@ -80,10 +80,10 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        print("LOG_2:" + response.json())
-        description = response.json().get('prizeName')
+        res = response.text
+        description = json.loads(res).get('prizeName')
         if description is None:
-            description = response.text
+            description = res
         print("第二次抽奖信息:", description)
 #         print(f"抽奖获得{description}")
 

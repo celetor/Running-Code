@@ -167,6 +167,7 @@ def login(username, password):
         "paramId": paramId
     }
     r = s.post(url, data=data, headers=headers, timeout=5)
+    r_dict = json.loads(r.text)
 
     # 测试用
     # if (SCKEY != ""):
@@ -177,13 +178,13 @@ def login(username, password):
     #     }
     #     requests.post(scurl, data=datas)
 
-    if (r.json()['result'] == 0):
-        print(r.json()['msg'])
+    if (r_dict.get('result') == 0):
+        print(r_dict.get('msg'))
     else:
         if (SCKEY == ""):
-            print(r.json()['msg'])
+            print(r_dict.get('msg'))
         else:
-            msg = r.json()['msg']
+            msg = r_dict.get('msg')
             print(msg)
             data = {
                 "text": "登录出错",
@@ -191,7 +192,7 @@ def login(username, password):
             }
             sc = requests.post(scurl, data=data)
         return "error"
-    redirect_url = r.json()['toUrl']
+    redirect_url = r_dict.get('toUrl')
     r = s.get(redirect_url)
     return s
 

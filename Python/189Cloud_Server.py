@@ -60,6 +60,7 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
+        print("LOG_1:" + response.json())
         description = response.json().get('prizeName')
         if description is None:
             description = response.text
@@ -79,6 +80,7 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
+        print("LOG_2:" + response.json())
         description = response.json().get('prizeName')
         if description is None:
             description = response.text

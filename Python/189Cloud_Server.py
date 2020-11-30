@@ -48,40 +48,42 @@ def main():
     }
     # 第一次抽奖
     response = s.get(url, headers=headers)
-    if ("errorCode" in response.text):
-        if (response.json()['errorCode'] == "User_Not_Chance"):
+    res = response.text
+    res_dict = json.loads(res)
+    if ("errorCode" in res):
+        if (res_dict.get('errorCode') == "User_Not_Chance"):
             print("开始第一次抽奖,抽奖次数不足")
         else:
-            print(response.text)
+            print(res)
             if (SCKEY != ""):
                 data = {
                     "text": "第一次抽奖出错",
-                    "desp": response.text
+                    "desp": res
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        res = response.text
-        description = json.loads(res).get('prizeName')
+        description = res_dict.get('prizeName')
         if description is None:
             description = res
         print("第一次抽奖信息:", description)
 #         print(f"抽奖获得{description}")
     # 第二次抽奖
     response = s.get(url2, headers=headers)
-    if ("errorCode" in response.text):
-        if (response.json()['errorCode'] == "User_Not_Chance"):
+    res = response.text
+    res_dict = json.loads(res)
+    if ("errorCode" in res):
+        if (res_dict.get('errorCode') == "User_Not_Chance"):
             print("开始第二次抽奖,抽奖次数不足")
         else:
-            print(response.text)
+            print(res)
             if (SCKEY != ""):
                 data = {
                     "text": "第二次抽奖出错",
-                    "desp": response.text
+                    "desp": res
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        res = response.text
-        description = json.loads(res).get('prizeName')
+        description = res_dict.get('prizeName')
         if description is None:
             description = res
         print("第二次抽奖信息:", description)

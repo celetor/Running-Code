@@ -64,11 +64,11 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        description = res_dict.get('prizeName')
+        #description = res_dict.get('prizeName')
+        description = res
         if description is None:
             description = res
-        print("第一次抽奖信息:", description)
-#         print(f"抽奖获得{description}")
+        print(f"第一次抽奖信息:{description}")
     # 第二次抽奖
     response = s.get(url2, headers=headers)
     res = response.text
@@ -85,11 +85,11 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        description = res_dict.get('prizeName')
+        #description = res_dict.get('prizeName')
+        description = res
         if description is None:
             description = res
-        print("第二次抽奖信息:", description)
-#         print(f"抽奖获得{description}")
+        print(f"第二次抽奖信息:{description}")
 
 
 def int2char(a):

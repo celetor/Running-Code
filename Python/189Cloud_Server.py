@@ -53,10 +53,12 @@ def main():
     res = response.text
     res_dict = json.loads(res)
     if ("errorCode" in res):
-        if (res_dict.get('errorCode') == "User_Not_Chance"):
-            print("开始第一次抽奖,抽奖次数不足")
+        if ("User_Not_Chance" in res):
+            print("第一次抽奖出错:抽奖次数不足")
+        elif("InternalError" in res):
+            print("第一次抽奖出错:内部错误，可能是活动下线")
         else:
-            print(res)
+            print(f"第一次抽奖出错:{res}")
             if (SCKEY != ""):
                 data = {
                     "text": "第一次抽奖出错",
@@ -74,10 +76,12 @@ def main():
     res = response.text
     res_dict = json.loads(res)
     if ("errorCode" in res):
-        if (res_dict.get('errorCode') == "User_Not_Chance"):
-            print("开始第二次抽奖,抽奖次数不足")
+        if ("User_Not_Chance" in res):
+            print("第二次抽奖出错:抽奖次数不足")
+        elif("InternalError" in res):
+            print("第二次抽奖出错:内部错误，可能是活动下线")
         else:
-            print(res)
+            print(f"第二次抽奖出错:{res}")
             if (SCKEY != ""):
                 data = {
                     "text": "第二次抽奖出错",

@@ -66,10 +66,9 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        if res == "":
-            res_dict = {}
-        description = res_dict.get('prizeName')
-        if description is None:
+        if ('prizeName' in res):
+            description = res_dict.get('prizeName')
+        else:
             description = res
         print(f"第一次抽奖信息:{description}")
     # 第二次抽奖
@@ -90,10 +89,9 @@ def main():
                 }
                 sc = requests.post(scurl, data=data)
     else:
-        if res == "":
-            res_dict = {}
-        description = res_dict.get('prizeName')
-        if description is None:
+        if ('prizeName' in res):
+            description = res_dict.get('prizeName')
+        else:
             description = res
         print(f"第二次抽奖信息:{description}")
 

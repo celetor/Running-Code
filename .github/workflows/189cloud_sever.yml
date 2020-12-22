@@ -23,6 +23,7 @@ jobs:
 
       - name: npm install
         run: npm install
+
       - name: "运行【中国电信签到】"
         run: node Javascript/10000.js
         env:

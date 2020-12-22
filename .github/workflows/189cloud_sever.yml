@@ -7,8 +7,28 @@ on:
     - cron: 45 0 * * *
 
 jobs:
-  build:
-    if: ${{ github.actor == 'Celeter' }}
+  if: ${{ github.actor == 'Celeter' }}
+  10000checkin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          ref: slave
+
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: npm install
+        run: npm install
+      - name: "运行【中国电信签到】"
+        run: node function/10000.js
+        env:
+          TELECOM_MOBILE: ${{ secrets.TELECOM_MOBILE }}
+
+  189cloud:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project

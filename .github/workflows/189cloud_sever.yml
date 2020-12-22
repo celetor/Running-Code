@@ -7,7 +7,7 @@ on:
     - cron: 45 0 * * *
 
 jobs:
-  189holl:
+  holl189:
     if: ${{ github.actor == 'Celeter' }}
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
         env:
           TELECOM_MOBILE: ${{ secrets.TELECOM_MOBILE }}
 
-  189cloud:
+  cloud189:
     if: ${{ github.actor == 'Celeter' }}
     runs-on: ubuntu-latest
     steps:

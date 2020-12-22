@@ -7,8 +7,8 @@ on:
     - cron: 45 0 * * *
 
 jobs:
-  if: ${{ github.actor == 'Celeter' }}
   10000checkin:
+    if: ${{ github.actor == 'Celeter' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
@@ -29,6 +29,7 @@ jobs:
           TELECOM_MOBILE: ${{ secrets.TELECOM_MOBILE }}
 
   189cloud:
+    if: ${{ github.actor == 'Celeter' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project

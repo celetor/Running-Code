@@ -7,28 +7,6 @@ on:
     - cron: 45 0 * * *
 
 jobs:
-  holl189:
-    if: ${{ github.actor == 'Celeter' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Project
-        uses: actions/checkout@v2
-        with:
-          ref: slave
-
-      - name: Set up Node.js 10
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.x
-
-      - name: npm install
-        run: npm install
-
-      - name: "运行【中国电信签到】"
-        run: node Javascript/10000.js
-        env:
-          TELECOM_MOBILE: ${{ secrets.TELECOM_MOBILE }}
-
   cloud189:
     if: ${{ github.actor == 'Celeter' }}
     runs-on: ubuntu-latest

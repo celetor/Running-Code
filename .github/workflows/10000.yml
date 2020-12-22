@@ -1,12 +1,12 @@
 name: 电信营业厅签到
 
 on:
-#  watch:
-#    types: [ started ]
+  watch:
+    types: [ started ]
   schedule:
     - cron: 20 16 * * *
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
 
 jobs:
   holl189:

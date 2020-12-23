@@ -27,7 +27,7 @@ jobs:
         run: npm install
         working-directory: Javascript
 
-      - name: "Script Run"
+      - name: Script Run
         run: node 10000.js
         working-directory: Javascript
         env:

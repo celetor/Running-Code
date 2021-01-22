@@ -3,12 +3,12 @@
 
 name: 京小超领蓝币
 
-on:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: "10 16 * * *"
+#on:
+#  push:
+#    branches:
+#      - master
+#  schedule:
+#    - cron: "10 16 * * *"
 
 jobs:
   build:

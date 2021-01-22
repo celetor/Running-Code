@@ -1,0 +1,57 @@
+name: 微信机器人1
+
+on:
+  schedule:
+    - cron: 0 23 * * *
+  watch:
+    types: [ started ]
+#  push:
+#    branches: [ master ]
+#  issue_comment:
+#    types: [created, deleted]
+
+jobs:
+  build:
+    if: ${{ github.actor == 'Celeter' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+        with:
+          ref: slave
+
+      - name: Python3 Install
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Requirements
+        run: |
+          pip install requests
+          pip install beautifulsoup4
+          pip install lxml
+
+      - name: Send 163News Message
+        if: ${{ github.event_name == 'schedule' }}
+        run: python wechat_robot.py
+        working-directory: Python
+        env:
+          WECHAT_URL: ${{ secrets.WECHAT_URL }}
+          IS_NEWS: 'TRUE'
+
+      - name: Send Youshu Message
+        if: ${{ github.event_name == 'watch' }}
+        run: python wechat_robot.py
+        working-directory: Python
+        env:
+          WECHAT_URL: ${{ secrets.WECHAT_URL }}
+          IS_YOUSHU: 'TRUE'
+
+      - name: Send Qidian Message
+        if: ${{ github.event_name == 'pull_request' }}
+        run: python wechat_robot.py
+        working-directory: Python
+        env:
+          WECHAT_URL: ${{ secrets.WECHAT_URL }}
+          IS_QIDIAN: 'TRUE'
+

@@ -23,10 +23,11 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install
+        working-directory: Javascript/MyActions
         run: |
           npm install
-        working-directory: Javascript/MyActions
       - name: "运行【京小超领蓝币(小费)】"
+        working-directory: Javascript/MyActions
         run: |
           node onlyOneExecute.js
         env:

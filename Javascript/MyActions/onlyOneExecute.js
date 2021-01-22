@@ -21,6 +21,7 @@ async function downFile() {
 }
 
 async function changeFiele() {
+    console.log("开始替换变量");
     let content = await fs.readFileSync("./temp.js", "utf8");
     content = await smartReplace.replaceWithSecrets(content, Secrets);
     await fs.writeFileSync("./execute.js", content, "utf8");
@@ -38,9 +39,9 @@ async function start() {
         return;
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到`);
+    await downFile();
+    await changeFiele();
     try {
-        await downFile();
-        await changeFiele();
         await exec("node execute.js", { stdio: "inherit" });
     } catch (e) {
         console.log("执行异常:" + e);

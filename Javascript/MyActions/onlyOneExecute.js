@@ -40,10 +40,11 @@ async function start() {
         return;
     }
     console.log(`当前共${Secrets.JD_COOKIE.split("&").length}个账号需要签到`);
-    await downFile();
-    await changeFiele();
     try {
-        await exec("node execute.js", { stdio: "inherit" });
+        await downFile();
+        await changeFiele();
+        //await exec("node execute.js", { stdio: "inherit" });
+        await exec("node JD_DailyBonus.js >> result.txt");
     } catch (e) {
         console.log("执行异常:" + e);
     }

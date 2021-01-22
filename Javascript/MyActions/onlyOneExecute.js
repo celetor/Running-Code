@@ -16,6 +16,7 @@ const Secrets = {
 
 async function downFile() {
     console.log("开始下载代码");
+    await download("https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jdCookie.js","./")
     await download(Secrets.SyncUrl, "./", { filename: "temp.js" });
     console.log("下载代码完毕");
 }

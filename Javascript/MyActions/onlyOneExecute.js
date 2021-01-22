@@ -44,7 +44,7 @@ async function start() {
         await downFile();
         await changeFiele();
         //await exec("node execute.js", { stdio: "inherit" });
-        await exec("node JD_DailyBonus.js >> result.txt");
+        await exec("node execute.js >> result.txt");
     } catch (e) {
         console.log("执行异常:" + e);
     }

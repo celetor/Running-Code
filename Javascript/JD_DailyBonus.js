@@ -45,18 +45,31 @@ async function sendNotify (text,desp) {
 function getTime() {
   let utc = -8;//new Date().getTimezoneOffset() / 60;
   let date = new Date(new Date().getTime() - utc * 60 * 60 * 1000);
+
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   month = month < 10 ? '0' + month : month;
+
   let day = date.getDate();
   day = day < 10 ? '0' + day : day;
+
   let h = date.getHours();
   h = h < 10 ? '0' + h : h;
+
   let m = date.getMinutes();
   m = m < 10 ? '0' + m : m;
+
   let s = date.getSeconds();
   s = s < 10 ? '0' + s : s;
+
   let ms = date.getMilliseconds();
+  if (ms < 10) {
+      ms = '00' + ms;
+  }
+  else if (ms < 100) {
+      ms = '0' + ms;
+  }
+
   return `[${year}-${month}-${day} ${h}:${m}:${s}.${ms}] `;
 }
 

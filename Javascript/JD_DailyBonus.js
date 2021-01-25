@@ -49,13 +49,14 @@ async function start() {
   }
   // 下载最新代码
   await downFile();
-  console.log('下载代码完毕')
+  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 下载代码完毕`)
   // 替换变量
   await changeFile();
-  console.log('替换变量完毕')
+  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 替换变量完毕`)
   // 执行
+  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 开始执行脚本`)
   await exec("node JD_DailyBonus.js >> result.txt");
-  console.log('执行完毕')
+  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 脚本执行完毕`)
 
   // 读取执行结果
   const path = "./result.txt";
@@ -63,15 +64,15 @@ async function start() {
   if (fs.existsSync(path)) {
     content = fs.readFileSync(path, "utf8");
   }
-  let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
-  let res = t ? t[1].replace(/\n/,'') : '失败'
-  let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/)
-  let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
   
   //console.log("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
-  console.log(`签到结果 ${new Date().toLocaleDateString()} \n`, content);
+  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 签到结果：\n${content}`);
 
   if (serverJ) {
+    let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
+    let res = t ? t[1].replace(/\n/,'') : '失败'
+    let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/)
+    let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
     await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
   }
 }

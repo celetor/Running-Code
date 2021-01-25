@@ -43,7 +43,7 @@ async function sendNotify (text,desp) {
 }
 
 function getTime() {
-  let utc = new Date().getTimezoneOffset() / 60;
+  let utc = -8;//new Date().getTimezoneOffset() / 60;
   let date = new Date(new Date().getTime() - utc * 60 * 60 * 1000);
   let year = date.getFullYear();
   let month = date.getMonth() + 1;

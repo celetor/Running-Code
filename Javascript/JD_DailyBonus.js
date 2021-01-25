@@ -52,7 +52,7 @@ function getTime() {
   let m = date.getMinutes();
   let s = date.getSeconds();
   let ms = date.getMilliseconds();
-  return `${year}-${month}-${day} ${h}:${m}:${s}.${ms}`;
+  return `[${year}-${month}-${day} ${h}:${m}:${s}.${ms}] `;
 }
 
 async function start() {

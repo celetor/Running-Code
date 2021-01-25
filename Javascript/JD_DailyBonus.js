@@ -42,6 +42,19 @@ async function sendNotify (text,desp) {
   })
 }
 
+function getTime() {
+  let utc = new Date().getTimezoneOffset() / 60;
+  let date = new Date(new Date().getTime() - utc * 60 * 60 * 1000);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let h = date.getHours();
+  let m = date.getMinutes();
+  let s = date.getSeconds();
+  let ms = date.getMilliseconds();
+  return `${year}-${month}-${day} ${h}:${m}:${s}.${ms}`;
+}
+
 async function start() {
   if (!KEY) {
     console.log('请填写 key 后在继续')
@@ -49,14 +62,14 @@ async function start() {
   }
   // 下载最新代码
   await downFile();
-  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 下载代码完毕`)
+  console.log(`${getTime()} 下载代码完毕`)
   // 替换变量
   await changeFile();
-  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 替换变量完毕`)
+  console.log(`${getTime()} 替换变量完毕`)
   // 执行
-  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 开始执行脚本`)
+  console.log(`${getTime()} 开始执行脚本`)
   await exec("node JD_DailyBonus.js >> result.txt");
-  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 脚本执行完毕`)
+  console.log(`${getTime()} 脚本执行完毕`)
 
   // 读取执行结果
   const path = "./result.txt";
@@ -66,7 +79,7 @@ async function start() {
   }
   
   //console.log("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
-  console.log(`${new Date(new Date().getTime()+8*60*60*1000).toLocaleString()} 签到结果：\n${content}`);
+  console.log(`${getTime()} 签到结果：\n${content}`);
 
   if (serverJ) {
     let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)

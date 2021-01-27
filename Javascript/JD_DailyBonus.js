@@ -43,8 +43,8 @@ async function sendNotify (text,desp) {
 }
 
 function getTime() {
-  let utc = -8;//new Date().getTimezoneOffset() / 60;
-  let date = new Date(new Date().getTime() - utc * 60 * 60 * 1000);
+  let utc = (-8) - new Date().getTimezoneOffset() / 60;             //当地时间与东八区相差几小时
+  let date = new Date(new Date().getTime() - utc * 60 * 60 * 1000); //东八区时间
 
   let year = date.getFullYear();
   let month = date.getMonth() + 1;

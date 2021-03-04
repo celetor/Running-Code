@@ -104,7 +104,7 @@ async function start() {
     let res = t ? t[1].replace(/\n/,'') : '失败'
     let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/)
     let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
-    await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
+    await sendNotify(` ${res2}  ${res} ${getTime()}`, content);
   }
 }
 

@@ -2,10 +2,10 @@ name: 京东每日签到
 
 on:
   workflow_dispatch:
-  watch:
-    types: [ started ]
-  schedule:
-    - cron: 15 16 * * *
+#   watch:
+#     types: [ started ]
+#   schedule:
+#     - cron: 15 16 * * *
 #   push:
 #     branches: [ master ]
     

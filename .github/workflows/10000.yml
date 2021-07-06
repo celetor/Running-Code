@@ -3,8 +3,8 @@ name: 电信营业厅签到
 on:
   watch:
     types: [ started ]
-  schedule:
-    - cron: 5 23 * * *
+#   schedule:
+#     - cron: 5 23 * * *
 #  push:
 #    branches: [ master ]
 
